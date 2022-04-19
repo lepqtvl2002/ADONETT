@@ -21,11 +21,23 @@ namespace ADONET
         private void button1_Click(object sender, EventArgs e)
         {//1CONNECTION 
             string s = @"Data Source=DESKTOP-737MH8F\SQLEXPRESS;Initial Catalog=SQLDemo;Integrated Security=True";
-            SqlConnection cnn = new SqlConnection(s);
-            //cnn.Open();
-            //cnn.Close();
-            // MessageBox.Show(cnn.State.ToString());
-            // cnn.Close();
+            DBHelper db = new DBHelper(s);
+            string query = "select * from SV";
+            dataGridView1.DataSource = db.GetRecordSV(query);
+
+            /*SqlConnection cnn = new SqlConnection(s);
+            string query = "select * from SV";
+            SqlCommand cmd = new SqlCommand(query, cnn);
+            cnn.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            cmd.ExecuteReader();
+            dataGridView1.DataSource = da;
+            cnn.Close();
+            MessageBox.Show(da.ToString());*/
+
+            /*cnn.Open();
+            cnn.Close();
+            MessageBox.Show(cnn.State.ToString());*/
 
 
 
@@ -86,16 +98,14 @@ namespace ADONET
             //cầu nối trung gian CSDL <-> DataSet
             //SqlDataAdapter  Fill :  đổ dữ liệu từ CSDL --> Dataset
 
-            string query = "select * from SV";
-            SqlCommand cmd = new SqlCommand(query, cnn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBox1.SelectedIndex >= 0)
             {
-                string s = ((CBBItem)comboBox1.SelectedItem).Value.ToString()
+                string s = ((CBBItem)comboBox1.SelectedItem).Value
                     + ((CBBItem)comboBox1.SelectedItem).Text;
                 MessageBox.Show(s);
             }

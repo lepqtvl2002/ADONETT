@@ -36,6 +36,8 @@ namespace LINQ
                      select new { p.MSSV, p.NameSV, p.LopSH.NameLop };            
             dataGridView1.DataSource = l1.ToList();*/
             var l2 = db.SVs.Select(p => new { p.MSSV, p.NameSV, p.DTB, p.LopSH.NameLop });
+            txtSearch.Text = "";
+            cbbLop.Text = "";
             dataGridView1.DataSource = l2.ToList();
 
         }
@@ -95,6 +97,42 @@ namespace LINQ
             foreach(string s in listLopSH)
             {
                 cbbLop.Items.Add(s);
+            }
+        }
+
+        private void cbbLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var l2 = db.SVs.Where(p => p.LopSH.NameLop == cbbLop.Text)
+                .Select(p => new { p.MSSV, p.NameSV, p.DTB, p.LopSH.NameLop });
+            dataGridView1.DataSource = l2.ToList();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var list = db.SVs.Where(p => p.MSSV.Contains(txtSearch.Text)
+            || p.NameSV.Contains(txtSearch.Text)
+            || p.DTB.ToString().Contains(txtSearch.Text)
+            || p.LopSH.NameLop.Contains(txtSearch.Text))
+                .Select(p => new {p.MSSV, p.NameSV, p.DTB, p.LopSH.NameLop}).ToList();
+            dataGridView1.DataSource = list;
+        }
+
+        private void cbbSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] s = cbbSort.SelectedItem.ToString().Split(' ');
+
+            if (s[1] == "Ascending")
+            {
+                var list = db.SVs.SqlQuery("SELECT * FROM SV ORDER BY " + s[0] + " ASC")
+                    .Select(p => new { p.MSSV, p.NameSV, p.DTB, p.LopSH.NameLop }).ToList();
+                dataGridView1.DataSource = list;
+            }
+            else if(s[1] == "Descending")
+            {
+                var list = db.SVs
+                    .SqlQuery("SELECT * FROM SV ORDER BY " + s[0] + " DESC")
+                    .Select(p => new { p.MSSV, p.NameSV, p.DTB, p.LopSH.NameLop }).ToList();
+                dataGridView1.DataSource = list;
             }
         }
     }

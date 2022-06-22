@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADONET", "ADONET\ADONET.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ", "LINQ\LINQ.csproj", "{94D12365-F14A-456E-9290-213523BE3C8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirst", "CodeFirst\CodeFirst.csproj", "{C4301072-CCA4-45F7-AC64-234220794B60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{94D12365-F14A-456E-9290-213523BE3C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94D12365-F14A-456E-9290-213523BE3C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94D12365-F14A-456E-9290-213523BE3C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4301072-CCA4-45F7-AC64-234220794B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4301072-CCA4-45F7-AC64-234220794B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4301072-CCA4-45F7-AC64-234220794B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4301072-CCA4-45F7-AC64-234220794B60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
